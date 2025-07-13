@@ -109,17 +109,24 @@ function App() {
 
         {/* Search Result */}
         <div className="mt-4">
-          {searchResult === null ? null : searchResult === 'not-found' ? (
-            <p className="text-red-500 font-medium">Not Present</p>
-          ) : (
-            <div className="bg-white border mt-2 p-4 rounded shadow">
-              <p><strong>Name:</strong> {searchResult.name}</p>
-              <p><strong>Email:</strong> {searchResult.email}</p>
-              <p><strong>Mobile:</strong> {searchResult.mobile}</p>
-              <p><strong>Address:</strong> {searchResult.address}</p>
-            </div>
-          )}
+  {(() => {
+    if (searchResult === null) {
+      return null;
+    } else if (searchResult === 'not-found') {
+      return <p className="text-red-500 font-medium">Not Present</p>;
+    } else {
+      return (
+        <div className="bg-white border mt-2 p-4 rounded shadow">
+          <p><strong>Name:</strong> {searchResult.name}</p>
+          <p><strong>Email:</strong> {searchResult.email}</p>
+          <p><strong>Mobile:</strong> {searchResult.mobile}</p>
+          <p><strong>Address:</strong> {searchResult.address}</p>
         </div>
+      );
+    }
+  })()}
+</div>
+
       </div>
     </div>
   );
